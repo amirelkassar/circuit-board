@@ -119,10 +119,14 @@ export function CircuitBoard({
     );
   }, [sigA, sigB]);
 
+  // When both switches are off, all lights stay off (start state / demo rule)
+  const displayOutputs =
+    sigA === 0 && sigB === 0 ? outputs.map(() => 0 as Signal) : outputs;
+
   const isJunctionActive = (j: (typeof JUNCTIONS)[number]) => {
     if (j.active === 'A') return sigA === 1;
     if (j.active === 'B') return sigB === 1;
-    if (j.active === 'out' && j.outIndex !== undefined) return outputs[j.outIndex] === 1;
+    if (j.active === 'out' && j.outIndex !== undefined) return displayOutputs[j.outIndex] === 1;
     return false;
   };
 
@@ -144,7 +148,7 @@ export function CircuitBoard({
       )}
       <svg
         className="circuit-board__svg"
-        viewBox="0 0 760 520"
+        viewBox="0 0 760 360"
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
@@ -152,13 +156,13 @@ export function CircuitBoard({
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="0.5" />
           </pattern>
         </defs>
-        <rect x="0" y="0" width="760" height="520" fill="url(#circuit-grid)" className="circuit-board__grid" />
+        <rect x="0" y="0" width="760" height="360" fill="url(#circuit-grid)" className="circuit-board__grid" />
 
         {/* Power rails */}
         <path className="circuit-board__rail" d="M 88 16 L 752 16" fill="none" strokeWidth="2" />
-        <path className="circuit-board__rail circuit-board__rail--gnd" d="M 88 504 L 752 504" fill="none" strokeWidth="2" />
+        <path className="circuit-board__rail circuit-board__rail--gnd" d="M 88 338 L 752 338" fill="none" strokeWidth="2" />
         <path className="circuit-board__rail" d="M 88 48 L 88 16" fill="none" strokeWidth="1.5" />
-        <path className="circuit-board__rail circuit-board__rail--gnd" d="M 88 472 L 88 504" fill="none" strokeWidth="1.5" />
+        <path className="circuit-board__rail circuit-board__rail--gnd" d="M 88 318 L 88 338" fill="none" strokeWidth="1.5" />
 
         <foreignObject x={FO_X} y={FO_Y_A} width={FO_W} height={FO_H} className="circuit-board__fo">
           <div className="circuit-board__header-inner"><PowerSource /></div>
@@ -173,7 +177,7 @@ export function CircuitBoard({
         <text x={92} y={98} className="circuit-board__bus-label">A</text>
         <text x={92} y={162} className="circuit-board__bus-label">B</text>
         <text x={72} y={12} className="circuit-board__rail-label">V+</text>
-        <text x={72} y={512} className="circuit-board__rail-label circuit-board__rail-label--gnd">GND</text>
+        <text x={72} y={348} className="circuit-board__rail-label circuit-board__rail-label--gnd">GND</text>
 
         {/* Long A and B bus */}
         <Wire d={`M ${BUS_X} ${WIRE_A_Y} L 280 ${WIRE_A_Y}`} active={sigA === 1} />
@@ -194,7 +198,7 @@ export function CircuitBoard({
           ) : null
         )}
 
-        {/* Horizontal wires between adjacent gates in each row */}
+        {/* Horizontal wires between adjacent gates (not from last gate in row, to avoid stray wire) */}
         {ROW_Y.map((ry, ri) => {
           const indices = GATE_ORDER.map((_, i) => i).filter((i) => CY[i] === ry);
           return indices.slice(0, -1).map((_, j) => {
@@ -206,28 +210,29 @@ export function CircuitBoard({
               <Wire
                 key={`between-${ri}-${j}`}
                 d={`M ${x0} ${ry} L ${x1} ${ry}`}
-                active={outputs[i0] === 1 || outputs[i1] === 1}
+                active={displayOutputs[i0] === 1 || displayOutputs[i1] === 1}
               />
             );
           });
         })}
 
-        {/* Output wires: gate -> mid -> LED (two segments each) */}
-        {outputs.map((out, i) => {
+        {/* Output wires: gate -> mid -> LED (two segments each); wire ends at LED */}
+        {displayOutputs.map((out, i) => {
           const gy = CY[i];
           const outX = gateOutX(i);
-          const midX = (outX + LED_X - 18) / 2;
+          const endX = LED_X - 10;
+          const midX = (outX + endX) / 2;
           return (
             <g key={`out-${i}`}>
               <Wire d={`M ${outX} ${gy} L ${midX} ${gy}`} active={out === 1} />
-              <Wire d={`M ${midX} ${gy} L ${LED_X - 18} ${gy}`} active={out === 1} />
+              <Wire d={`M ${midX} ${gy} L ${endX} ${gy}`} active={out === 1} />
             </g>
           );
         })}
 
-        {/* Vertical spine wires (left of gates, A/B distribution) */}
-        <Wire d="M 145 48 L 145 308" active={sigA === 1} />
-        <Wire d="M 165 128 L 165 388" active={sigB === 1} />
+        {/* Vertical spine wires (left of gates, end at bottom row — no dangling) */}
+        <Wire d={`M 145 48 L 145 ${ROW_Y[ROWS - 1] + 12}`} active={sigA === 1} />
+        <Wire d={`M 165 128 L 165 ${ROW_Y[ROWS - 1] + 12}`} active={sigB === 1} />
 
         <Resistor x={112} y={WIRE_A_Y} active={sigA === 1} />
         <Resistor x={112} y={WIRE_B_Y} active={sigB === 1} />
@@ -267,7 +272,7 @@ export function CircuitBoard({
           <LampLED on={sigB === 1} />
         </g>
 
-        {outputs.map((out, i) => (
+        {displayOutputs.map((out, i) => (
           <g
             key={`led-${i}`}
             className="circuit-board__led-wrap"
