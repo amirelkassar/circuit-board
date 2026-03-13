@@ -6,10 +6,13 @@ const BOX_HEIGHT = 28;
 
 type Props = {
   gateType: GateType;
+  /** Optional label (e.g. AND0, AND1) for board; defaults to gateType */
+  label?: string;
 };
 
-export function LogicGate({ gateType }: Props) {
+export function LogicGate({ gateType, label }: Props) {
   const hasBubble = gateType === 'NAND' || gateType === 'NOR' || gateType === 'NOT';
+  const displayLabel = label ?? gateType;
   return (
     <g className={`logic-gate logic-gate--${gateType}`}>
       <rect
@@ -25,7 +28,7 @@ export function LogicGate({ gateType }: Props) {
         x={BOX_WIDTH / 2}
         y={BOX_HEIGHT / 2}
       >
-        {gateType}
+        {displayLabel}
       </text>
       {hasBubble && (
         <circle

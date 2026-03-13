@@ -22,6 +22,92 @@
   color: var(--accent);
 }
 
+.truth-table-panel__gate-status {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.truth-table-panel__gate-status-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--panel-title);
+  margin: 0 0 10px 0;
+}
+
+.truth-table-panel__gate-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.truth-table-panel__gate-status-item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg-deep);
+  font-size: 0.85rem;
+}
+
+.truth-table-panel__gate-status-item--on {
+  border-color: var(--success);
+  background: rgba(136, 204, 136, 0.12);
+}
+
+.truth-table-panel__gate-status-label {
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.truth-table-panel__gate-status-item--on .truth-table-panel__gate-status-label {
+  color: var(--success);
+}
+
+.truth-table-panel__gate-status-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.truth-table-panel__gate-status-table th,
+.truth-table-panel__gate-status-table td {
+  padding: 4px 6px;
+  text-align: center;
+  border: 1px solid var(--panel-border);
+}
+
+.truth-table-panel__gate-status-table th {
+  color: var(--page-text-muted);
+  font-weight: 600;
+}
+
+.truth-table-panel__gate-status-table td {
+  color: var(--panel-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.truth-table-panel__gate-status-out-cell {
+  font-weight: 700;
+}
+
+.truth-table-panel__gate-status-item--on .truth-table-panel__gate-status-out-cell {
+  color: var(--success);
+}
+
+@media (min-width: 900px) {
+  .truth-table-panel__gate-status-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .truth-table-panel__gate-status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .truth-table-panel__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));

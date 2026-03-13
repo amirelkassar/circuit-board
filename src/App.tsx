@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { CircuitBoard } from './components/CircuitBoard';
+import { CircuitBoard, GATE_ORDER } from './components/CircuitBoard';
 import { TruthTable } from './components/TruthTable';
 import { GateGuide } from './components/GateGuide';
 import { GATE_TYPES } from './logic/types';
@@ -104,7 +104,23 @@ function App() {
           onInputAChange={() => setInputA((a) => !a)}
           onInputBChange={() => setInputB((b) => !b)}
         />
-        <TruthTable inputA={sigA} inputB={sigB} />
+        <TruthTable
+          inputA={sigA}
+          inputB={sigB}
+          gateStatuses={(() => {
+            const serialByType: Record<string, number> = {};
+            return GATE_ORDER.map((gateType, i) => {
+              const serial = serialByType[gateType] ?? 0;
+              serialByType[gateType] = serial + 1;
+              return {
+                position: i + 1,
+                gateType,
+                label: `${gateType}${serial}`,
+                output: (sigA === 0 && sigB === 0 ? 0 : outputs[gateType]) as 0 | 1,
+              };
+            });
+          })()}
+        />
           </>
         )}
       </main>

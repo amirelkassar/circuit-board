@@ -21,7 +21,7 @@ function shuffle<T>(array: T[]): T[] {
   return out;
 }
 
-const GATE_ORDER: GateType[] = shuffle([...GATE_TYPES, ...GATE_TYPES]);
+export const GATE_ORDER: GateType[] = shuffle([...GATE_TYPES, ...GATE_TYPES]);
 
 type Props = {
   inputA: boolean;
@@ -111,13 +111,22 @@ export function CircuitBoard({
 }: Props) {
   const sigA: Signal = inputA ? 1 : 0;
   const sigB: Signal = inputB ? 1 : 0;
-  const [hoveredGate, setHoveredGate] = useState<GateType | null>(null);
+  const [hoveredGateIndex, setHoveredGateIndex] = useState<number | null>(null);
 
   const outputs = useMemo(() => {
     return GATE_ORDER.map((gt) =>
       GATE_INFO[gt].hasTwoInputs ? computeOutput(gt, sigA, sigB) : computeOutput(gt, sigA)
     );
   }, [sigA, sigB]);
+
+  const gateLabels = useMemo(() => {
+    const serialByType: Partial<Record<GateType, number>> = {};
+    return GATE_ORDER.map((gt) => {
+      const serial = serialByType[gt] ?? 0;
+      serialByType[gt] = serial + 1;
+      return `${gt}${serial}`;
+    });
+  }, []);
 
   // When both switches are off, all lights stay off (start state / demo rule)
   const displayOutputs =
@@ -132,14 +141,14 @@ export function CircuitBoard({
 
   return (
     <div className="circuit-board">
-      {hoveredGate && (
+      {hoveredGateIndex !== null && (
         <div className="circuit-board__tooltip" role="tooltip">
-          <strong className="circuit-board__tooltip-name">{hoveredGate}</strong>
+          <strong className="circuit-board__tooltip-name">{gateLabels[hoveredGateIndex]}</strong>
           <span className="circuit-board__tooltip-formula">
-            {GATE_INFO[hoveredGate].formula}
+            {GATE_INFO[GATE_ORDER[hoveredGateIndex]].formula}
           </span>
           <p className="circuit-board__tooltip-desc">
-            {GATE_INFO[hoveredGate].description}
+            {GATE_INFO[GATE_ORDER[hoveredGateIndex]].description}
           </p>
           <p className="circuit-board__tooltip-effect">
             In this circuit it drives its LED: the lamp is on when its output is 1.
@@ -256,11 +265,11 @@ export function CircuitBoard({
             key={`${gt}-${i}`}
             className="circuit-board__gate-wrap"
             transform={`translate(${CX[i] - (GW * SCALE) / 2}, ${CY[i] - (GH * SCALE) / 2}) scale(${SCALE})`}
-            onMouseEnter={() => setHoveredGate(gt)}
-            onMouseLeave={() => setHoveredGate(null)}
+            onMouseEnter={() => setHoveredGateIndex(i)}
+            onMouseLeave={() => setHoveredGateIndex(null)}
           >
-            <title>{gt}: {GATE_INFO[gt].description}</title>
-            <LogicGate gateType={gt} />
+            <title>{gateLabels[i]}: {GATE_INFO[gt].description}</title>
+            <LogicGate gateType={gt} label={gateLabels[i]} />
           </g>
         ))}
 
