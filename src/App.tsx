@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { CircuitBoard } from './components/CircuitBoard';
 import { TruthTable } from './components/TruthTable';
 import { GateGuide } from './components/GateGuide';
@@ -8,11 +8,23 @@ import { GATE_INFO } from './logic/gateData';
 import './App.css';
 
 type Tab = 'board' | 'learn';
+type Theme = 'dark' | 'light';
+
+const THEME_KEY = 'circuit-board-theme';
 
 function App() {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const stored = localStorage.getItem(THEME_KEY);
+    return stored === 'light' ? 'light' : 'dark';
+  });
   const [activeTab, setActiveTab] = useState<Tab>('learn');
   const [inputA, setInputA] = useState<boolean>(false);
   const [inputB, setInputB] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_KEY, theme);
+  }, [theme]);
 
   const sigA = inputA ? 1 : 0;
   const sigB = inputB ? 1 : 0;
@@ -32,6 +44,15 @@ function App() {
     <div className="app">
       <header className="app__header">
         <h1 className="app__title">Circuit Board</h1>
+        <button
+          type="button"
+          className="app__theme-toggle"
+          onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+        >
+          {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+        </button>
         <nav className="app__tabs" aria-label="Main sections">
           <button
             type="button"

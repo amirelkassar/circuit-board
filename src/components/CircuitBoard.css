@@ -106,10 +106,11 @@
   z-index: 10;
   max-width: 420px;
   padding: 14px 18px;
-  background: #1e1e1a;
-  border: 2px solid #8b6914;
+  background: var(--panel-bg-deep);
+  border: 2px solid var(--tab-active-border);
   border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  color: var(--page-text);
   pointer-events: none;
   animation: circuit-tooltip-in 0.15s ease-out;
 }
@@ -128,7 +129,7 @@
 .circuit-board__tooltip-name {
   display: block;
   font-size: 1.1rem;
-  color: #8c8;
+  color: var(--success);
   margin-bottom: 4px;
 }
 
@@ -136,24 +137,24 @@
   display: block;
   font-size: 0.9rem;
   font-family: ui-monospace, monospace;
-  color: #b8a858;
+  color: var(--panel-strong);
   margin-bottom: 8px;
 }
 
 .circuit-board__tooltip-desc {
   font-size: 0.9rem;
-  color: #c4c0b0;
+  color: var(--panel-text);
   line-height: 1.5;
   margin: 0 0 8px 0;
 }
 
 .circuit-board__tooltip-effect {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--page-text-muted);
   line-height: 1.4;
   margin: 0;
   padding-top: 8px;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--panel-border);
 }
 
 @media (max-width: 640px) {
