@@ -1,0 +1,40 @@
+.app {
+  min-height: 100vh;
+  background: #1c1c18;
+  color: #e0e0d8;
+  padding: 20px;
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #f0e8d8;
+}
+
+.app__tagline {
+  margin: 0;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.app__main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.app__outputs {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin: 0 0 12px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.app__outputs strong {
+  color: #fa0;
+}

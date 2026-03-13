@@ -1,0 +1,10 @@
+.resistor__body {
+  fill: #3a3520;
+  stroke: #666;
+  stroke-width: 1;
+}
+
+.resistor--active .resistor__body {
+  fill: #5a4a20;
+  stroke: #b90;
+}

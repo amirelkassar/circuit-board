@@ -1,0 +1,41 @@
+.circuit-board {
+  background: #d4a84b;
+  background-image: linear-gradient(
+    145deg,
+    #e0b85c 0%,
+    #c49430 50%,
+    #b88620 100%
+  );
+  border: 6px solid #8b6914;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.circuit-board__fo {
+  overflow: visible;
+}
+
+.circuit-board__header-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circuit-board__svg {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  min-height: 200px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .circuit-board {
+    padding: 12px;
+  }
+}
