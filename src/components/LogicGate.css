@@ -4,13 +4,14 @@
   stroke-width: 1.5;
 }
 
-.logic-gate__symbol {
-  font-size: 14px;
+.logic-gate__label {
+  font-size: 10px;
   font-weight: 700;
   fill: #8c8;
-  font-family: ui-monospace, monospace;
+  font-family: system-ui, -apple-system, sans-serif;
   text-anchor: middle;
   dominant-baseline: middle;
+  letter-spacing: 0.02em;
 }
 
 .logic-gate__bubble {

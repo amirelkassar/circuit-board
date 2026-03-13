@@ -17,11 +17,11 @@ type Props = {
   onInputBChange: () => void;
 };
 
-const GW = 36;
+const GW = 52;
 const GH = 28;
-const GATE_CX = 160;
+const GATE_CX = 168;
 const GATE_CY = 70;
-const LED_X = 280;
+const LED_X = 290;
 
 export function GameBoard({
   gateType,
@@ -48,7 +48,7 @@ export function GameBoard({
   const wireB = hasTwoInputs
     ? `M 72 85 L 100 85 L 100 ${GATE_CY + 6} L ${GATE_CX - GW / 2} ${GATE_CY + 6}`
     : 'M 0 0 L 0 0';
-  const wireOut = `M ${GATE_CX + GW / 2 + (['NAND', 'NOR', 'NOT'].includes(gateType) ? 4 : 0)} ${GATE_CY} L ${LED_X - 14} ${GATE_CY}`;
+  const wireOut = `M ${GATE_CX + GW / 2 + (['NAND', 'NOR', 'NOT'].includes(gateType) ? 5 : 0)} ${GATE_CY} L ${LED_X - 14} ${GATE_CY}`;
 
   return (
     <div className="game-board">
@@ -81,7 +81,7 @@ export function GameBoard({
           <LogicGate gateType={gateType} />
         </g>
         <g transform={`translate(${LED_X}, ${GATE_CY})`}>
-          <LampLED on={output === 1} label={gateType} />
+          <LampLED on={output === 1} />
         </g>
       </svg>
     </div>

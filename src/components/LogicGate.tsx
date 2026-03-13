@@ -1,16 +1,8 @@
 import type { GateType } from '../logic/types';
 import './LogicGate.css';
 
-const GATE_SYMBOLS: Record<GateType, string> = {
-  AND: '&',
-  OR: '≥1',
-  NOT: '1',
-  NAND: '&',
-  NOR: '≥1',
-  XOR: '=1',
-  XNOR: '=1',
-  BUFFER: '1',
-};
+const BOX_WIDTH = 52;
+const BOX_HEIGHT = 28;
 
 type Props = {
   gateType: GateType;
@@ -24,15 +16,24 @@ export function LogicGate({ gateType }: Props) {
         className="logic-gate__box"
         x={0}
         y={0}
-        width={36}
-        height={28}
-        rx={3}
+        width={BOX_WIDTH}
+        height={BOX_HEIGHT}
+        rx={4}
       />
-      <text className="logic-gate__symbol" x={18} y={19}>
-        {GATE_SYMBOLS[gateType]}
+      <text
+        className="logic-gate__label"
+        x={BOX_WIDTH / 2}
+        y={BOX_HEIGHT / 2}
+      >
+        {gateType}
       </text>
       {hasBubble && (
-        <circle className="logic-gate__bubble" cx={36} cy={14} r={4} />
+        <circle
+          className="logic-gate__bubble"
+          cx={BOX_WIDTH}
+          cy={BOX_HEIGHT / 2}
+          r={5}
+        />
       )}
     </g>
   );
