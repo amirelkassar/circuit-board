@@ -1,0 +1,190 @@
+.gate-guide {
+  padding: 0 0 24px 0;
+}
+
+.gate-guide__section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e0d8c8;
+  margin: 0 0 12px 0;
+}
+
+.gate-guide__game {
+  background: #252520;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.gate-guide__game-instruction {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.gate-guide__game-instruction strong {
+  color: #c8b896;
+}
+
+.gate-guide__level {
+  color: #888;
+  font-size: 0.85rem;
+  margin: 0 0 16px 0;
+}
+
+.gate-guide__level strong {
+  color: #8c8;
+}
+
+.gate-guide__description {
+  background: #1e1e1a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  max-width: 56ch;
+}
+
+.gate-guide__description-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #c8b896;
+  margin: 0 0 12px 0;
+}
+
+.gate-guide__description-formula {
+  font-size: 1rem;
+  font-family: ui-monospace, monospace;
+  color: #8c8;
+  margin: 0 0 14px 0;
+  padding: 8px 10px;
+  background: #252520;
+  border-radius: 6px;
+  border-left: 3px solid #8b6914;
+}
+
+.gate-guide__description-text {
+  font-size: 1rem;
+  color: #c4c0b0;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+}
+
+.gate-guide__description .gate-guide__game-instruction {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #999;
+  padding-top: 12px;
+  border-top: 1px solid #333;
+}
+
+.gate-guide__board-wrap {
+  margin-bottom: 16px;
+}
+
+.gate-guide__success {
+  padding: 12px 0 0;
+  border-top: 1px solid #444;
+}
+
+.gate-guide__success-text {
+  color: #8f8;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.gate-guide__next {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid #4a6a2a;
+  border-radius: 8px;
+  background: #2a3a1a;
+  color: #8f8;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.gate-guide__next:hover {
+  background: #3a4a2a;
+  border-color: #5a7a3a;
+}
+
+.gate-guide__explain {
+  margin-top: 8px;
+}
+
+.gate-guide__pick-hint {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 12px 0;
+}
+
+.gate-guide__gates {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.gate-guide__card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: #252520;
+  border: 2px solid #444;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.gate-guide__card:hover {
+  background: #2a2a25;
+  border-color: #666;
+}
+
+.gate-guide__card--selected {
+  border-color: #8b6914;
+  background: #2a2818;
+  box-shadow: 0 0 0 1px #8b6914;
+}
+
+.gate-guide__card--selected:hover {
+  background: #322f1c;
+}
+
+.gate-guide__card-action {
+  display: block;
+  font-size: 0.75rem;
+  color: #8c8;
+  margin-top: 8px;
+}
+
+.gate-guide__card--selected .gate-guide__card-action {
+  color: #b8a858;
+}
+
+.gate-guide__card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #8c8;
+  margin: 0 0 6px 0;
+}
+
+.gate-guide__formula {
+  font-size: 0.9rem;
+  color: #c8b896;
+  font-family: ui-monospace, monospace;
+  margin: 0 0 6px 0;
+}
+
+.gate-guide__desc {
+  font-size: 0.8rem;
+  color: #999;
+  line-height: 1.4;
+  margin: 0;
+}
