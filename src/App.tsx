@@ -58,19 +58,19 @@ function App() {
           <h2 className="app__tips-title">How it works</h2>
           <ul className="app__tips-list">
             <li>
-              <strong>Switches A and B</strong> — Click them to turn each input ON (1) or OFF (0). They feed the same signal to every gate on the board.
+              <strong>Switches A and B</strong> — Turn each input ON (1) or OFF (0). The same A and B signals go to every gate. When both are OFF, all lights stay off.
             </li>
             <li>
-              <strong>Wires</strong> — When a signal is 1, the wire glows (red/yellow) to show current flow. Dark wires mean signal 0.
+              <strong>Power</strong> — V+ and GND rails run along the board. Wires glow orange/yellow when they carry a 1; dark when they carry 0.
             </li>
             <li>
-              <strong>Logic gates</strong> — Each gate (AND, OR, NOT, etc.) computes one output from its inputs. NOT and BUFFER use only input A.
+              <strong>Gates</strong> — The board has 16 gates in four rows (two of each type, in random order). Each gate is labeled (AND, OR, NOT, etc.). NOT and BUFFER use only input A; the rest use A and B. Hover a gate to see what it does and how it affects the circuit.
             </li>
             <li>
-              <strong>LEDs</strong> — Each gate has an LED on the right. It lights up (green) when that gate’s output is 1.
+              <strong>Lights</strong> — Each gate has an LED on the right. It turns green when that gate’s output is 1. The two small lamps on the left show when the A and B buses are high.
             </li>
             <li>
-              <strong>Truth tables</strong> — Below the board you can see the full truth table for every gate. The row that matches your current A and B is highlighted.
+              <strong>Truth tables</strong> — Below the board, each gate type has a truth table. The row for your current A and B is highlighted.
             </li>
           </ul>
         </section>
