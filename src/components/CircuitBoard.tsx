@@ -124,7 +124,7 @@ export function CircuitBoard({
     return GATE_ORDER.map((gt) => {
       const serial = serialByType[gt] ?? 0;
       serialByType[gt] = serial + 1;
-      return `${gt}${serial}`;
+      return serial === 0 ? gt : `${gt}${serial}`;
     });
   }, []);
 

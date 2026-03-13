@@ -6,7 +6,7 @@ const BOX_HEIGHT = 28;
 
 type Props = {
   gateType: GateType;
-  /** Optional label (e.g. AND0, AND1) for board; defaults to gateType */
+  /** Optional label (e.g. AND, AND1) for board; defaults to gateType */
   label?: string;
 };
 

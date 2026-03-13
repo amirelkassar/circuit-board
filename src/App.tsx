@@ -115,7 +115,7 @@ function App() {
               return {
                 position: i + 1,
                 gateType,
-                label: `${gateType}${serial}`,
+                label: serial === 0 ? gateType : `${gateType}${serial}`,
                 output: (sigA === 0 && sigB === 0 ? 0 : outputs[gateType]) as 0 | 1,
               };
             });
