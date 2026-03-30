@@ -7,7 +7,6 @@ import { SwitchInput } from './SwitchInput';
 import { Wire } from './Wire';
 import { LogicGate } from './LogicGate';
 import { LampLED } from './LampLED';
-import './GameBoard.css';
 
 type Props = {
   gateType: GateType;
@@ -51,24 +50,24 @@ export function GameBoard({
   const wireOut = `M ${GATE_CX + GW / 2 + (['NAND', 'NOR', 'NOT'].includes(gateType) ? 5 : 0)} ${GATE_CY} L ${LED_X - 14} ${GATE_CY}`;
 
   return (
-    <div className="game-board">
+    <div className="rounded-xl border-[6px] border-[#8b6914] bg-[#d4a84b] bg-gradient-to-br from-[#e0b85c] via-[#c49430] to-[#b88620] p-4 shadow-[inset_0_2px_4px_rgba(255,255,255,0.2),0_6px_20px_rgba(0,0,0,0.35)]">
       <svg
-        className="game-board__svg"
+        className="mx-auto block h-auto min-h-[140px] w-full max-w-[320px]"
         viewBox="0 0 320 140"
         preserveAspectRatio="xMidYMid meet"
       >
-        <foreignObject x={8} y={8} width={58} height={36} className="game-board__fo">
-          <div className="game-board__fo-inner">
+        <foreignObject x={8} y={8} width={58} height={36} className="overflow-visible">
+          <div className="flex h-full w-full items-center justify-center">
             <PowerSource />
           </div>
         </foreignObject>
-        <foreignObject x={8} y={48} width={58} height={38} className="game-board__fo">
-          <div className="game-board__fo-inner">
+        <foreignObject x={8} y={48} width={58} height={38} className="overflow-visible">
+          <div className="flex h-full w-full items-center justify-center">
             <SwitchInput label="A" on={inputA} onToggle={onInputAChange} />
           </div>
         </foreignObject>
-        <foreignObject x={8} y={92} width={58} height={38} className="game-board__fo">
-          <div className="game-board__fo-inner">
+        <foreignObject x={8} y={92} width={58} height={38} className="overflow-visible">
+          <div className="flex h-full w-full items-center justify-center">
             <SwitchInput label="B" on={inputB} onToggle={onInputBChange} />
           </div>
         </foreignObject>

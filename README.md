@@ -16,7 +16,7 @@ An interactive educational web application that simulates a digital logic circui
 - **Vite 6** for build and dev server
 - **Functional components** and hooks only
 - **SVG** for the circuit (wires, gates, LEDs, resistors, rails)
-- **Plain CSS** (no Tailwind)
+- **Tailwind CSS** v4 (with `@tailwindcss/vite`); theme tokens live as CSS variables in `src/index.css` for light/dark mode
 - No backend; everything runs in the browser
 
 ## Getting started
@@ -54,24 +54,23 @@ soly/
 └── src/
     ├── main.tsx            # React entry, mounts App
     ├── App.tsx              # Tabs (Learn / Circuit board), tips, outputs summary
-    ├── App.css
-    ├── index.css            # Global styles
+        ├── index.css            # Tailwind entry + theme CSS variables + keyframes
     ├── vite-env.d.ts
     ├── logic/
     │   ├── types.ts         # Signal, GateType, GATE_TYPES
     │   ├── gates.ts         # AND, OR, NOT, NAND, NOR, XOR, XNOR, BUFFER + computeOutput
     │   └── gateData.ts      # Formula, description, explanation, getTruthTable
     └── components/
-        ├── CircuitBoard.tsx / .css   # Full board: 16 gates, A/B buses, rails, LEDs
-        ├── GateGuide.tsx    / .css   # “Learn the gates” tab content
-        ├── GameBoard.tsx    / .css   # Single-gate game board
-        ├── TruthTable.tsx   / .css   # Truth tables for all gate types
-        ├── PowerSource.tsx  / .css   # V+ / GND block
-        ├── SwitchInput.tsx  / .css   # A / B toggle
-        ├── Wire.tsx         / .css   # SVG path, glows when active
-        ├── Resistor.tsx     / .css   # Small resistor on bus
-        ├── LogicGate.tsx    / .css   # Gate box with name (AND, OR, …)
-        └── LampLED.tsx       / .css   # LED circle (green when on)
+        ├── CircuitBoard.tsx          # Full board: 16 gates, A/B buses, rails, LEDs
+        ├── GateGuide.tsx             # “Learn the gates” tab content
+        ├── GameBoard.tsx             # Single-gate game board
+        ├── TruthTable.tsx            # Truth tables for all gate types
+        ├── PowerSource.tsx           # V+ / GND block
+        ├── SwitchInput.tsx           # A / B toggle
+        ├── Wire.tsx                  # SVG path, glows when active
+        ├── Resistor.tsx              # Small resistor on bus
+        ├── LogicGate.tsx             # Gate box with name (AND, OR, …)
+        └── LampLED.tsx               # LED circle (green when on)
 ```
 
 ## Logic gates

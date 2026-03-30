@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 *,
 *::before,
 *::after {
@@ -29,7 +31,7 @@
 }
 
 /* Light theme */
-[data-theme="light"] {
+[data-theme='light'] {
   --page-bg: #f5f0e6;
   --page-text: #2a2a24;
   --page-text-strong: #1a1a16;
@@ -52,18 +54,47 @@
   --card-selected-border: #8b6914;
 }
 
-#root {
-  width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
+@layer base {
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background: var(--page-bg);
+    color: var(--page-text);
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  background: var(--page-bg);
-  color: var(--page-text);
+@keyframes wire-glow {
+  from {
+    stroke-opacity: 0.85;
+  }
+  to {
+    stroke-opacity: 1;
+  }
+}
+
+@keyframes lamp-pulse {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes circuit-tooltip-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

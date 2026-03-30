@@ -1,5 +1,4 @@
 import type { GateType } from '../logic/types';
-import './LogicGate.css';
 
 const BOX_WIDTH = 52;
 const BOX_HEIGHT = 28;
@@ -14,9 +13,9 @@ export function LogicGate({ gateType, label }: Props) {
   const hasBubble = gateType === 'NAND' || gateType === 'NOR' || gateType === 'NOT';
   const displayLabel = label ?? gateType;
   return (
-    <g className={`logic-gate logic-gate--${gateType}`}>
+    <g>
       <rect
-        className="logic-gate__box"
+        className="fill-[#1e1e1e] stroke-[#555] stroke-[1.5]"
         x={0}
         y={0}
         width={BOX_WIDTH}
@@ -24,15 +23,17 @@ export function LogicGate({ gateType, label }: Props) {
         rx={4}
       />
       <text
-        className="logic-gate__label"
+        className="fill-[#8c8] font-sans text-[10px] font-bold tracking-wide"
         x={BOX_WIDTH / 2}
         y={BOX_HEIGHT / 2}
+        textAnchor="middle"
+        dominantBaseline="middle"
       >
         {displayLabel}
       </text>
       {hasBubble && (
         <circle
-          className="logic-gate__bubble"
+          className="fill-[#1e1e1e] stroke-[#555] stroke-[1.5]"
           cx={BOX_WIDTH}
           cy={BOX_HEIGHT / 2}
           r={5}
